@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model ToDoApp.Models.ToDos
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<form asp-action="Edit" method="post" class="card">
+    <div class="row" style="margin:0px">
+        <div class="col-sm" style="display:inline-grid;padding:10px">
+            <label asp-for="@Model.Title"></label>
+            <input style="min-height:30px; min-width:300px;border-radius:5px;font-size:1rem" asp-for="@Model.Title" />
+
+        </div>
+        <div class="col-sm" style="display: inline-grid; padding: 10px">
+            <label asp-for="@Model.DueDate"></label>
+            <input value="" style="min-height: 30px; min-width: 300px; border-radius: 5px; font-size: 1rem" type="date" asp-for="@Model.DueDate" />
+
+        </div>
+    </div>
+
+    <div style="display:inline-flex">
+        
+        <input style="background-color: black;margin-left:9px; font-size: .9rem" type="submit" value="Delete" asp-page-handler="Delete" asp-route-id="@Model.Title" onclick="CloseForm();" class="save-button">
+        <input style="background-color: black;margin-left:9px; font-size: .9rem" type="submit" value="Cancel" asp-page-handler="Cancel" onclick="CloseForm();" class="save-button">
+        <input style="background-color: black;margin-left:9px; font-size: .9rem" type="submit" asp-page-handler="Update" asp-route-id="@Model.Title" value="Update" onclick="CloseForm();" class="save-button" />
+        <div style="margin-left:12px">
+            @if (@Model.IsDone)
+            {
+                <input asp-for="@Model.IsDone" id="i" type="checkbox" checked="checked" />
+            }
+            else
+            {
+                <input asp-for="@Model.IsDone" id="i" type="checkbox" />
+            }
+
+            <label for="i">Mark Complete</label>
+        </div>
+    </div>
+</form>
+
+
+

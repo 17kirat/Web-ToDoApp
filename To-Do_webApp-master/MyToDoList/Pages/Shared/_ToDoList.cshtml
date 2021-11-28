@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+}
+@model MyToDoList.Models.ToDos
+
+
+
+
+    <section>
+        <div class="todos">
+            <div class="row">
+
+                <div class="todo-details">
+                    <span class="span-title" onclick="EditTask(@Model.ToDoID)">@Model.Title</span>
+
+                </div>
+
+                <div class="todo-details">
+                    <dt>@Model.DueDate</dt>
+
+                </div>
+                <div class="todo-details">
+                    
+                    <dt>@Model.CompletedOn</dt>
+
+                </div>
+
+                <div class="todo-number">
+                    @if (@Model.IsCompleted)
+                    {
+                        <span>&#10004;</span>
+                    }
+                    else
+                    {
+                        <span> &#10060;</span>
+                    }
+
+                </div>
+            </div>
+            </div>
+    </section>
+
+
+

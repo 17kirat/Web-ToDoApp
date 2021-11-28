@@ -1,0 +1,95 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@section Scripts {
+    <script>
+        // toggel show hide add new todo div on 'Add Task' button click
+    function Showhide() {
+        $("#newFrom").toggle();
+        }
+
+        // show edit todo item div on click of title in a row on home page view
+        function EditTask(e) {
+            console.log(e);
+            $('#' + e + '').show();
+        }
+
+        //close all the edit or new form div on the page
+        function CloseForm() {
+            $('form').hide();
+        }
+
+    </script>
+}
+
+    <div class="app">
+        <header class="app-header">
+            <div class="app-header-logo">
+                
+                <div class="logo">
+                    <h1 class="logo-title">
+                        <span>ToDo App</span>
+                    </h1>
+                </div>
+            </div>
+        </header>
+
+        <div>
+            <div class="app-body-main-content">
+                <div style="display: inline-flex;padding: 1%;">
+                    <button class="save-button" onclick="Showhide()">Add Task</button>
+                </div>
+                <div class="card" id="newFrom" style="display:none">
+                    <section>
+                        <partial name="_newToDo" model="@Model.addTask" />
+                    </section>
+                    
+
+                </div>
+
+                <div class="app-header-navigation">
+                    <div class="tabs">
+                        <span class="text-light">
+                            Title
+                        </span>
+                        <span class="text-light">
+                            Due Date
+                        </span>
+                        <span class="text-light">
+                            Completed On
+                        </span>
+                        <span class="text-light">
+                            Is Done
+                        </span>
+                    </div>
+                </div>
+                <section class="todo-section">
+                    @if (!(Model.ToDos == null))
+                    {
+                        @foreach (Models.ToDos toDo in Model.ToDos)
+                        {
+                            <div>
+                                <partial name="_ToDoList" model="toDo" />
+                            </div>
+
+                            <div style="display:none" id="@toDo.ToDoID">
+                                <partial name="_editToDo" model="toDo" />
+                            </div>
+
+                        }
+                    }
+            else
+            {
+                <h1>No record in DataBase !</h1>
+            }
+                </section>
+
+            </div>
+
+        </div>
+    </div>
+
+
